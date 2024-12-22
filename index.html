@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./css/index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+</head>
+
+<body>
+    <ul class="shell">
+        <li class="button1">
+            <a href="index.html">首页</a>
+        </li>
+        <li class="button1">
+            <a href="./contents/个人简介.html">个人简介</a>
+        </li>
+        <li class="portrait">
+            <ul class="information">
+                <li>邵云飞</li>
+                <li>2023204216</li>
+                <li><a href="https://www.qdu.edu.cn/">青岛大学</a></li>
+            </ul>
+        </li>
+        <li class="button1">
+            <a href="./contents/风采展示.html">风采展示</a>
+        </li>
+        <li class="button1">
+            <a href=".//contents/留言板.html">留言板</a>
+        </li>
+    </ul>
+
+    <div id = "info-container">
+        <section class="main-section" id="time-content">
+                <div id="clock"></div>
+                <div id="date"></div>
+        </section>
+        <section class="main-section" id="intro-content">
+            <div id="intro-container">
+                <p style="font-size: 0.93em;">最真挚的文字是写给自己的，所以分享的前提是，作者必须愿意向读者敞开心扉，暴露出自己的弱点，甚至抵达心灵的最深处----</p>
+                <p style="font-size: 1.5em;">欢迎阅读我的主页</p>
+            </div>
+            
+        </section>
+    </div>
+
+    <div class="content-container">
+        <link href="./css/课程表.css" rel="stylesheet">
+        <section class="main-section" id="myHobby">
+            <table class="schedule-table">
+                <caption>2024春季学期课程表</caption>
+                <tr>
+                    <th></th>
+                    <th>周一</th>
+                    <th>周二</th>
+                    <th>周三</th>
+                    <th>周四</th>
+                    <th>周五</th>
+                    <th>周六</th>
+                    <th>周日</th>
+                </tr>
+                <tr>
+                    <td class="time-cell" style="color: black;">1-2节</td>
+                    <td class="java-programming">数据结构</td>
+                    <td>并行计算</td>
+                    <td class="web-design">Python语言</td>
+                    <td class="english">Web开发基础</td>
+                    <td class="politics">雅思口语</td>
+                    <td class="rest" rowspan="5">休息</td>
+                    <td class="rest" rowspan="5">休息</td>
+                </tr>
+                <tr>
+                    <td class="time-cell" style="color: black;">3-4节</td>
+                    <td class="discrete-math">概率论与数理统计</td>
+                    <td class="data-analysis">体育</td>
+                    <td class="statistics">Python语言</td>
+                    <td>并行计算</td>
+                    <td class="sports">概率论与数理统计</td>
+                </tr>
+                <tr>
+                    <td class="time-cell" style="color: black;">5-6节</td>
+                    <td></td>
+                    <td class="circuit-theory">中国近代史纲要</td>
+                    <td class="web-development">数据结构</td>
+                    <td></td>
+                    <td class="english">软件工程</td>
+                </tr>
+                <tr>
+                    <td class="time-cell" style="color: black;">7-8节</td>
+                    <td></td>
+                    <td class="calculus">创新创业基础</td>
+                    <td class="software-engineering">软件工程</td>
+                    <td></td>
+                    <td class="java-programming">数据结构</td>
+                </tr>
+                <tr>
+                    <td class="time-cell" style="color: black;">9-10节</td>
+                    <td class="algorithm">离散数学</td>
+                    <td class="marketing">生活中的经济学</td>
+                    <td class="statistics">Python语言</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+    </div>
+
+    <div class="footer">
+        <link rel="stylesheet" href="./css/index.css">
+            青岛大学--计算机科学技术学院--邵云飞--2023204216
+    </div>
+
+
+
+
+
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const content = document.getElementById('content');
+        const landing = document.getElementById('landing');
+        const enterButton = document.getElementById('enterButton');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        const nav = document.querySelector('.navigation');
+        const sidebar = document.getElementById('sidebar');
+        const downwave = document.getElementById('downout');
+        const video1 = document.getElementById('video1');
+        const video2 = document.getElementById('video2');
+        const clock = document.getElementById('clock');
+        const dateElement = document.getElementById('date');
+        const threshold = window.innerHeight;
+    
+        if (content) {
+            setTimeout(() => {
+                content.classList.add('active');
+            }, 100);
+        }
+    
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > threshold) {
+    
+                if (landing) {
+                    landing.remove(); 
+                }
+                if (nav) {
+                    nav.classList.add('fixed');
+                    Object.assign(nav.style, {
+                        position: 'fixed',
+                        top: '0',
+                        width: '100%',
+                        zIndex: '1000', 
+                    });
+                }
+            } else {
+    
+                if (nav) {
+                    nav.classList.remove('fixed');
+                    nav.style.position = '';
+                    nav.style.top = '';
+                    nav.style.width = '';
+                }
+            }
+        });
+    
+    
+        if (sidebar && landing) {
+            sidebar.style.display = 'block';
+        }
+    
+    
+        function updateClock() {
+            const now = new Date();
+            const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+            const day = days[now.getDay()];
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+            if (clock) {
+                clock.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+            if (dateElement) {
+                dateElement.textContent = `${year}年${month}月${date}日 ${day}`;
+            }
+        }
+    
+    
+        updateClock();
+        setInterval(updateClock, 1000);
+    });
+    
+    
+    
+    
+    window.onload = function() {
+        const landing = document.getElementById('landing');
+        const hasVisited = sessionStorage.getItem('hasVisited');
+        const commentList = document.getElementById('commentList');
+    
+    
+        if (hasVisited === 'true' && landing) {
+            landing.style.display = 'none';
+        } else {
+            sessionStorage.setItem('hasVisited', 'true');
+        }
+    
+    
+        loadComments();
+    
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const commentText = document.getElementById('comment').value;
+            if (commentText) {
+                const comments = getCommentsFromStorage();
+                comments.push(commentText);
+                saveComment(comments);
+                document.getElementById('comment').value = ''; 
+                loadComments();
+            }
+        });
+    };
+    
+    
+    function loadComments() {
+        const commentList = document.getElementById('commentList');
+        const comments = getCommentsFromStorage();
+    
+    
+        comments.forEach((comment, index) => {
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment-item');
+            commentElement.innerHTML = `
+                <div class="comment-avatar">
+                    <img src="medias/pics/comment_avatar/default.jpg" alt="用户头像" style="width: 100%; height: 100%; border-radius: 50%;" />
+                </div>
+                <div class="comment-content">
+                    <p class="username">访客</p>
+                    <p>${comment}</p>
+                    <p class="timestamp">2077/5/31</p>
+                </div>
+            `;
+            commentList.appendChild(commentElement);
+        });
+    }
+    
+    
+    function getCommentsFromStorage() {
+        const storedComments = localStorage.getItem('comments');
+        return storedComments ? JSON.parse(storedComments) : [];
+    }
+    
+    
+    function saveComment(comments) {
+        localStorage.setItem('comments', JSON.stringify(comments));
+    }
+    
+    window.addEventListener('scroll', () => {
+        const landing = document.getElementById('landing');
+        const threshold = 200;
+        if (window.scrollY > threshold && landing) {
+            landing.style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>
+

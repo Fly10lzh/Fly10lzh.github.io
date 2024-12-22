@@ -1,0 +1,321 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 20px;
+    color: #090909;
+  }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../medias/pictures/背景.jpg);
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.footer{
+    position: fixed; /* 固定位置 */
+    bottom: 0; /* 距离底部0px */
+    left: 0; /* 距离左边0px */
+    width: 100%; /* 占满整个宽度 */
+    color: #fbc104; /* 字体颜色 */
+    text-align: center; /* 文本居中 */
+    padding: 10px 0; /* 内边距 */
+    box-shadow: 0 -2px 5px rgba(255, 251, 1, 0.97); /* 添加阴影 */
+}
+
+
+#main {
+    
+    height: 100vh;
+    width: 85vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#click-section {
+    width: 25%;
+    height: 100%;
+    padding: 20px 0;
+    position: relative;
+}
+
+#drawerboxes {
+    margin-left: 10%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#drawerboxes::before {
+    content: "";
+    width: 8px;
+    height: 94%;
+    position: absolute;
+    left: -10px;
+    top: 3%;
+    z-index: 120;
+}
+
+.drawerbox {
+    height: calc(100% / 5.5);
+    width: 70%;
+    position: relative;
+    z-index: 100;
+    transform: translateX(-70%);
+    transition: transform .5s ease-in-out;
+}
+
+.drawerbox.active {
+    transform: translateX(0);
+}
+
+.drawer-btn {
+    width: 100%;
+    height: 100%;
+    font: 800 30px '';
+    background-color: rgb(197, 250, 254);
+    border: none;
+    transition: background-color .5s ease-in-out;
+    color: #ffffff00;
+}
+
+.drawer-btn.active {
+    background-image: url(./img/bg.jpg);
+    background-size: cover;
+    color: rgb(8, 54, 179);
+}
+
+.drawer-btn:hover {
+    cursor: pointer;
+}
+
+.drawer-head {
+    position: absolute;
+    color: rgba(252, 223, 223, 0.025);
+    font-size: 200px;
+    font-weight: 700;
+    right: -38px;
+    top: calc(50% - 135px);
+    text-shadow: 2px -1px 8px rgba(255, 255, 255, 0.868);
+}
+
+#slide-section {
+    position: relative;
+    height: 100%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+    background: linear-gradient(to right bottom,
+        rgba(255, 255, 255, .6),
+        rgba(255, 255, 255, .3),
+        rgba(255, 255, 255, .2));
+    backdrop-filter: blur(11px);
+}
+
+#slide-bar {
+    position: absolute;
+    top: 10%;
+    left: 40px;
+    height: 80%;
+    width: 1px;
+    background-color: rgb(223, 223, 223);
+}
+#bar {
+    position: absolute;
+    height: calc(100% / 4);
+    width: 5px;
+    top: 0;
+    left: -1.2px;
+    background-color: rgb(175, 190, 255);
+    transition: transform .5s ease-in-out;
+}
+
+#card-section {
+    height: 100%;
+    width: 80%;
+    overflow: hidden;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0;
+    color: white;
+    font-size: 30px;
+    transition: transform .5s ease-in-out;
+}
+.card-small-title {
+    font-size: 30px;
+    font-weight: 600;
+    padding-bottom: min(5%, 10px);
+    color: rgb(8, 54, 179);
+    text-align: center;
+}
+.card-title {
+    font-size: 80px;
+    font-weight: 700;
+    padding-bottom: min(20%, 40px);
+    color: rgb(70, 100, 180);
+}
+.card-content {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgb(8, 54, 179);
+    margin-bottom: 60px;
+}
+.card-img {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+}
+
+
+
+ /* 导航栏固定样式 */
+.shell {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color:  #d5f004;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid #90c1c3; /* 为导航栏整体添加边框 */
+    margin-bottom: 100px;
+}
+
+/* 按钮与头像样式 */
+.button1, .portrait {
+    background-color: #faea05;
+    width: 170px;
+    height: 65px;
+    text-align: center;
+    line-height: 65px;
+    transition: .3s;
+    cursor: pointer;
+    border: 1px solid #90c1c3; /* 添加选项边框 */
+}
+
+.portrait::before {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transform: translate(30px, -30px);
+    background-image: url('../medias/pictures/小猫头像.jpg');
+    background-size: cover;
+    border: 10px solid #faea05;
+}
+
+.information {
+    width: 220px;
+    background-color:#eca604;/*头像框延伸*/
+    transform: translate(-20px, -200px);
+    border-radius: 10px;
+    padding: 20px 0;
+    line-height: 0;
+    height: 0;
+    transition: .3s;
+    opacity: 0;
+}
+
+.button1:hover {
+    background-color: #b9d108;
+}
+
+.button1 li:hover {
+    background-color: #b9d108;
+}
+
+.button1 ul li {
+    height: 0;
+    transition: .2s;
+    opacity: 0;
+    transform: translateY(-65px);
+    background-color: #e07a5f;
+    border-top: 4px solid #90c1c3; /* 改为实线样式并增加厚度 */
+    border-radius: 10px; /* 边框圆润 */
+}
+
+.button1:hover li {
+    height: 65px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portrait:hover .information {
+    opacity: 1;
+    line-height: 65px;
+    transform: translate(-20px, -10px);
+    height: auto;
+}
+a{
+    text-decoration: none; 
+}
+
+/*照片展示*/
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.2);
+    filter: brightness(0.8);
+}
+
+.gallery-item .caption {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover .caption {
+    transform: translateY(0);
+}

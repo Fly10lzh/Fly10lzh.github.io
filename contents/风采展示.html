@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../css/风采展示.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>风采展示</title>
+</head>
+
+<body>
+    <ul class="shell">
+        <li class="button1">
+            <a href="../index.html">首页</a>
+        </li>
+        <li class="button1">
+            <a href="./个人简介.html">个人简介</a>
+        </li>
+        <li class="portrait">
+            <ul class="information">
+                <li>邵云飞</li>
+                <li>2023204216</li>
+                <li><a href="https://www.qdu.edu.cn/">青岛大学</a></li>
+            </ul>
+        </li>
+        <li class="button1">
+            <a href="./风采展示.html">风采展示</a>
+        </li>
+        <li class="button1">
+            <a href="./留言板.html">留言板</a>
+        </li>
+    </ul>
+
+  <div id="main">
+    <div id="click-section">
+      <div id="drawerboxes">
+        <div class="drawerbox active">
+          <button class="drawer-btn active" onclick="slideTo(1)">旅行<span class="drawer-head">*</span></button>
+        </div>
+        <div class="drawerbox">
+          <button class="drawer-btn" onclick="slideTo(2)">羽球<span class="drawer-head">*</span></button>
+        </div>
+        <div class="drawerbox">
+          <button class="drawer-btn" onclick="slideTo(3)">第九艺术<span class="drawer-head">*</span></button>
+        </div>
+        <div class="drawerbox">
+          <button class="drawer-btn" onclick="slideTo(4)">猫猫<span class="drawer-head">*</span></button>
+        </div>
+      </div>
+    </div>
+    <div id="slide-section">
+      <div id="slide-bar">
+        <div id="bar"></div>
+      </div>
+      <div id="card-section">
+        <div id="card1" class="card">
+            <div class="card-small-title">旅行的意义，便是旅行本身</div>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="../medias/pictures/富士山下.jpg" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="../medias/pictures/小镇.jpg" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="../medias/pictures/二条城.jpg" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="../medias/pictures/英国.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="card2" class="card">
+          <div class="card-small-title">运动人生</div>
+          <div class="card-content">即使失败，它在我生命中凿刻下的痕迹，也将会是光荣的印记。
+            无论未来走到哪里，我都会像一个充满斗志的战士，不断征战。无论面对什么状况，永远都知道要怎样重新再出发。
+          </div>
+          <div class="card-img">
+            <img src="../medias/pictures/羽毛球.jpg" alt="">
+          </div>
+        </div>
+        <div id="card3" class="card">
+          <div class="card-small-title">第九艺术是游戏，但游戏不都是第九艺术</div>
+          <div class="card-content">Electronic gaming, the ninth art, creates immersive worlds where players actively shape adventures. With diverse narratives and global connections, it challenges, connects, and captivates.
+            Happily, this year we also have our own ninth art.
+          </div>
+            <div class="gallery-item">
+              <img src="../medias/pictures/p5.jpg" alt="">
+          </div>
+        </div>
+        <div id="card4" class="card">
+          <div class="card-small-title">圣火昭昭，圣光耀耀，凡我弟子，喵喵喵喵</div>
+          <div class="gallery">
+            <div class="gallery-item">
+                <img src="../medias/pictures/猫.jpg" alt="">
+            </div>
+            <div class="gallery-item">
+                <img src="../medias/pictures/猫猫.jpg" alt="">
+            </div>
+            <div class="gallery-item">
+              <img src="../medias/pictures/猫猫猫.jpg" alt="">
+          </div>
+          <div class="gallery-item">
+              <img src="../medias/pictures/猫猫猫猫.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <link rel="stylesheet" href="./css/index.css">
+        青岛大学--计算机科学技术学院--邵云飞--2023204216
+</div>
+
+  <script>
+    // 定义变量 
+    let chosenSlideNumber = 1; // 当前选择的幻灯片编号 
+    let offset = 0; // 幻灯片偏移量 
+    let barOffset = 0; // 导航条偏移量 
+    let intervalID; // 定时器 ID 
+    // 启动幻灯片轮播 
+    startSlide();
+    // 获取所有抽屉按钮，并为每个按钮添加点击事件监听器 
+    const drawerBtns = Array.from(document.querySelectorAll(".drawer-btn"));
+    drawerBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        clearInterval(intervalID); // 清除定时器 
+        startSlide(); // 重新启动幻灯片轮播 
+      })
+    })
+    // 获取幻灯片区域 
+    const slideSection = document.querySelector("#slide-section");
+    // 鼠标移入幻灯片区域时清除定时器 
+    slideSection.addEventListener("mouseenter", () => {
+      clearInterval(intervalID);
+    })
+    // 鼠标移出幻灯片区域时重新启动幻灯片轮播 
+    slideSection.addEventListener("mouseleave", () => {
+      startSlide();
+    })
+    // 切换到指定编号的幻灯片 
+    function slideTo(slideNumber) {
+      drawerboxToggle(slideNumber); // 切换抽屉面板状态 
+      drawerbtnToggle(slideNumber); // 切换抽屉按钮状态 
+      // 更新偏移量 
+      let previousSlideNumber = chosenSlideNumber;
+      chosenSlideNumber = slideNumber;
+      offset += (chosenSlideNumber - previousSlideNumber) * (-100); // 计算幻灯片偏移量 
+      barOffset += (chosenSlideNumber - previousSlideNumber) * (100); // 计算导航条偏移量 
+      barSlide(barOffset); // 移动导航条 
+      // 获取所有幻灯片，为每个幻灯片设置偏移量 
+      const slides = document.querySelectorAll(".card");
+      Array.from(slides).forEach(slide => {
+        slide.style.transform = `translateY(${offset}%)`;
+      })
+    }
+    // 切换抽屉面板状态 
+    function drawerboxToggle(drawerboxNumber) {
+      let prevDrawerboxNumber = chosenSlideNumber;
+      const drawerboxes = document.querySelectorAll(".drawerbox");
+      drawerboxes[prevDrawerboxNumber - 1].classList.toggle("active"); // 切换前一个抽屉面板的状态 
+      drawerboxes[drawerboxNumber - 1].classList.toggle("active"); // 切换当前抽屉面板的状态 
+    }
+    // 切换抽屉按钮状态 
+    function drawerbtnToggle(drawerBtnNumber) {
+      let prevDrawerBtnNumber = chosenSlideNumber;
+      const drawerBtns = document.querySelectorAll(".drawer-btn");
+      drawerBtns[prevDrawerBtnNumber - 1].classList.toggle("active"); // 切换前一个抽屉按钮的状态 
+      drawerBtns[drawerBtnNumber - 1].classList.toggle("active"); // 切换当前抽屉按钮的状态 
+    }
+    // 移动导航条 
+    function barSlide(barOffset) {
+      const bar = document.querySelector("#bar");
+      bar.style.transform = `translateY(${barOffset}%)`;
+    }
+    // 启动幻灯片轮播 
+    function startSlide() {
+      intervalID = setInterval(() => {
+        slideTo(chosenSlideNumber % 4 + 1); // 每次切换到下一个幻灯片 
+      }, 3000); // 每隔 3 秒自动切换幻灯片 
+    }
+</script>
+</body>
+
+</html>

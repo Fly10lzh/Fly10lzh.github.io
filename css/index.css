@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 20px;
+    color: #090909;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: url('../medias/pictures/背景.jpg')  no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* 导航栏固定样式 */
+.shell {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color:  #d5f004;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid #90c1c3; /* 为导航栏整体添加边框 */
+    margin-bottom: 100px;
+}
+
+/* 按钮与头像样式 */
+.button1, .portrait {
+    background-color: #faea05;
+    width: 170px;
+    height: 65px;
+    text-align: center;
+    line-height: 65px;
+    transition: .3s;
+    cursor: pointer;
+    border: 1px solid #90c1c3; /* 添加选项边框 */
+}
+
+.portrait::before {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transform: translate(30px, -30px);
+    background-image: url('../medias/pictures/小猫头像.jpg');
+    background-size: cover;
+    border: 10px solid #faea05;
+}
+
+.information {
+    width: 220px;
+    background-color:#eca604;/*头像框延伸*/
+    transform: translate(-20px, -200px);
+    border-radius: 10px;
+    padding: 20px 0;
+    line-height: 0;
+    height: 0;
+    transition: .3s;
+    opacity: 0;
+}
+
+.button1:hover {
+    background-color: #b9d108;
+}
+
+.button1 li:hover {
+    background-color: #b9d108;
+}
+
+.button1 ul li {
+    height: 0;
+    transition: .2s;
+    opacity: 0;
+    transform: translateY(-65px);
+    background-color: #e07a5f;
+    border-top: 4px solid #90c1c3; /* 改为实线样式并增加厚度 */
+    border-radius: 10px; /* 边框圆润 */
+}
+
+.button1:hover li {
+    height: 65px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portrait:hover .information {
+    opacity: 1;
+    line-height: 65px;
+    transform: translate(-20px, -10px);
+    height: auto;
+}
+
+a{
+    text-decoration: none; 
+}
+
+
+
+
+
+.main-section {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.6) 100%
+    );
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border-radius: 16px;
+    box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #007BFF;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    top: 20%;
+    bottom: auto;
+}
+
+.main-section1 {
+    background: rgba(255, 255, 255, 0); /* 设置完全透明 */
+    backdrop-filter: none; /* 禁用背景滤镜 */
+    -webkit-backdrop-filter: none; /* 禁用WebKit背景滤镜 */
+    border-radius: 16px;
+    box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2); /* 可根据需要调整阴影 */
+    padding: 30px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #007BFF; /* 文字颜色保持不变 */
+    position: fixed; /* 固定在页面底部 */
+    bottom: 0;
+    border: 1px solid rgba(255, 255, 255, 0); /* 设置透明边框 */
+}
+
+
+
+.footer{
+            position: fixed; /* 固定位置 */
+            bottom: 0; /* 距离底部0px */
+            left: 0; /* 距离左边0px */
+            width: 100%; /* 占满整个宽度 */
+            color: #fbc104; /* 字体颜色 */
+            text-align: center; /* 文本居中 */
+            padding: 10px 0; /* 内边距 */
+            box-shadow: 0 -2px 5px rgba(255, 251, 1, 0.97); /* 添加阴影 */
+}
+
+
+#info-container{
+    position: relative;
+    display: flex;
+    
+}
+#time-content{
+    width: 395px;
+    min-height: 200px;
+    margin-right: 10px;
+}
+#intro-content{
+    width: 395px;
+    min-height: 200px;
+    
+}
+#time-content:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+#intro-content:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+#clock {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#date {
+    text-align: center;
+    font-size: 1.2rem;
+}

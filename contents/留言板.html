@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/留言板.css">
+    <script src="js/留言板.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+</head>
+<body>
+    
+
+    <ul class="shell">
+        <li class="button1">
+            <a href="../index.html">首页</a>
+        </li>
+        <li class="button1">
+            <a href="./个人简介.html">个人简介</a>
+        </li>
+        <li class="portrait">
+            <ul class="information">
+                <li>邵云飞</li>
+                <li>2023204216</li>
+                <li><a href="https://www.qdu.edu.cn/">青岛大学</a></li>
+            </ul>
+        </li>
+        <li class="button1">
+            <a href="./风采展示.html">风采展示</a>
+        </li>
+        <li class="button1">
+            <a href="./留言板.html">留言板</a>
+        </li>
+    </ul>
+
+    <div class="container">
+        <h1>   </h1>
+        <h2>留言板</h2>
+        <form id="messageForm">
+            <input type="text" id="name" placeholder="请输入您的姓名" required>
+            <textarea id="message" placeholder="请输入您的留言" required></textarea>
+            <div class="file-input">
+                <label for="avatar">上传头像：</label>
+                <input type="file" id="avatar" accept="image/*">
+            </div>
+            <div class="preview">
+                <img id="avatarPreview" alt="头像预览">
+            </div>
+            <button type="submit">提交留言</button>
+        </form>
+        <div class="messages" id="messages"></div>  
+    </div>
+
+
+    <div class="footer">
+        <link rel="stylesheet" href="./css/index.css">
+            青岛大学--计算机科学技术学院--邵云飞--2023204216
+    </div>
+    <script>
+        const form = document.getElementById('messageForm');
+        const messagesDiv = document.getElementById('messages');
+        const avatarInput = document.getElementById('avatar');
+        const avatarPreview = document.getElementById('avatarPreview');
+
+        avatarInput.addEventListener('change', function() {
+            const file = avatarInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    avatarPreview.src = e.target.result;
+                    avatarPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                avatarPreview.style.display = 'none';
+            }
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            const avatarSrc = avatarPreview.src || 'https://via.placeholder.com/50'; // 默认头像
+
+            if (name.trim() && message.trim()) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+
+                const avatarElement = document.createElement('img');
+                avatarElement.src = avatarSrc;
+                messageElement.appendChild(avatarElement);
+
+                const contentDiv = document.createElement('div');
+
+                const nameElement = document.createElement('h3');
+                nameElement.textContent = name;
+                contentDiv.appendChild(nameElement);
+
+                const messageContentElement = document.createElement('p');
+                messageContentElement.textContent = message;
+                contentDiv.appendChild(messageContentElement);
+
+                messageElement.appendChild(contentDiv);
+                messagesDiv.appendChild(messageElement);
+
+                form.reset();
+                avatarPreview.style.display = 'none';
+            } else {
+                alert('请输入完整的姓名和留言内容。');
+            }
+        });
+    </script>
+</body>
+</html>
